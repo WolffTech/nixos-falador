@@ -1,6 +1,11 @@
-{ config, pkgs, dotfiles, ... }:
+{ config, pkgs, ... }:
 
 {
+
+  home.stateVersion = "25.05";
+  home.username = "wolff";
+  home.homeDirectory = "/home/wolff";
+
   nixpkgs.config = {
     allowUnfree = true;
   };
@@ -9,13 +14,9 @@
   programs.git.enable = true;
 
   home.packages = with pkgs; [
-    nvim
+    neovim
     lazygit
   ];
-
-  home.file = {
-    ".zshrc".source = "{dotfiles}/dot_zshrc";
-  };
 
   home.sessionVariables = {
     EDITOR = "nvim";

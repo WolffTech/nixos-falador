@@ -3,15 +3,22 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    dotfiles.url = "github:wolfftech/dotfiles";
   };
 
-  outputs = { self, nixpkgs, home-manager, dotfiles, ... }:
+  outputs = { self, nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      hosts = [
+        "falador-tester"
+        "falador-docker"
+        "falador-download"
+        "falador-media"
+        "falador-gamesrv"
+        "falador-bridge"
+      ];
     in {
       nixosConfigurations = builtins.listToAttrs (map (host: {
         name = host;
@@ -23,34 +30,17 @@
             ./modules/user-wolff.nix
             ./hosts/${host}-hardware.nix
             ./hosts/${host}.nix
+            # I don't like this and will clean it up eventually. It works for now though and I'm sick of working on it.
+            home-manager.nixosModules.home-manager
+            ({ config, pkgs, lib, ... }:
+            {
+              home-manager.users.wolff = {
+                home.stateVersion = "25.05";
+                imports = [ ./home/${host}.nix ];
+              };
+            })
           ];
         };
-      }) [ "falador-tester"
-           "falador-docker"
-           "falador-download"
-           "falador-media"
-           "falador-gamesrv"
-           "falador-bridge"
-         ]);
-
-      homeManagerConfigurations = builtins.listToAttrs (map (host: {
-        name = host;
-        value = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = {
-            dotfiles = dotfiles.packages.${system}.default;
-          };
-          modules = [ ./home/${host}.nix ];
-          homeDirectory = "/home/wolff";
-          configurationPackage = pkgs.callPackage ./modules/user-wolff.nix { };
-          username = "wolff";
-        };
-      }) [ "falador-tester"
-           "falador-docker"
-           "falador-download"
-           "falador-media"
-           "falador-gamesrv"
-           "falador-bridge"
-         ]);
+      }) hosts);
     };
 }
