@@ -3,8 +3,7 @@
 {
   users.users.wolff = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];  # sudo
-    ];
+    extraGroups = [ "wheel" ];
   };
 
   security.sudo = {
