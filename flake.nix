@@ -21,6 +21,7 @@
             ./modules/common.nix
             ./modules/ssh.nix
             ./modules/user-wolff.nix
+            ./hosts/${host}-hardware.nix
             ./hosts/${host}.nix
           ];
         };
