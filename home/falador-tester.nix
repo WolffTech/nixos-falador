@@ -14,8 +14,36 @@
   programs.git.enable = true;
 
   home.packages = with pkgs; [
+    # tools
+    zsh
     neovim
     lazygit
+    lazydocker
+    tmux
+    btop
+    zip
+    unzip
+
+    # cli tools
+    fzf
+    bat
+    eza
+    gh
+    jq
+    zoxide
+    nodenv
+    wget
+
+
+    # docker
+    docker
+    docker-compose
+
+    # coding
+    python314
+    go
+    lua
+    nodejs_24
   ];
 
   home.sessionVariables = {
