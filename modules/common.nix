@@ -16,6 +16,7 @@
   # system wide programs
   environment.systemPackages = with pkgs; [
     git
+    home-manager
   ];
 
   # state version (do not change)
