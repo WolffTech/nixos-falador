@@ -2,7 +2,7 @@
 
 {
   services.openssh = {
-    settings.permitRootLogin = "no";
-    settings.passwordAuthentication = true;
+    permitRootLogin = "no";
+    passwordAuthentication = true;
   };
 }
