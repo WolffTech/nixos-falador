@@ -17,4 +17,9 @@
 
   networking.defaultGateway = "172.16.1.1";
   networking.nameservers = [ "8.8.8.8" "1.1.1.1" ];
+
+  environment.systemPackages = with pkgs; [
+    docker
+    docker-compose
+  ];
 }

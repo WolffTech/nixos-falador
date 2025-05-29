@@ -34,11 +34,6 @@
     nodenv
     wget
 
-
-    # docker
-    docker
-    docker-compose
-
     # coding
     python314
     go
