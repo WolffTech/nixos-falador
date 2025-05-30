@@ -13,6 +13,11 @@
   networking.firewall.enable = false;
   services.openssh.enable = true;
 
+  # allow unfree packages
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
+
   # system wide programs
   environment.systemPackages = with pkgs; [
     git
