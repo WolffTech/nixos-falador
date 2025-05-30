@@ -16,7 +16,7 @@
         "falador-docker"
         "falador-download"
         "falador-media"
-        "falador-gamesrv"
+        "falador-gamesvr"
         "falador-bridge"
       ];
     in {
