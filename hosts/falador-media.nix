@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 let
-  secrets = import /etc/nixos/secrets.nix;
+  secrets = import ../secrets.nix;
 in
 {
   # hostname
