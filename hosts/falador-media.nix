@@ -1,11 +1,12 @@
 { config, pkgs, ... }:
 
 {
-  # Hostname
+  # hostname
   networking.hostName = "Falador-Media";
 
-  # Extra packages
+  # extra packages
   environment.systemPackages = with pkgs; [
+    plex
+    jellyfin
   ];
 }
-
