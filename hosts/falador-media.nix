@@ -10,7 +10,7 @@ in
   # networking
   networking.firewall.enable = lib.mkForce true;
   networking.firewall.allowPing = lib.mkForce true;
-  networking.firewall.allowedTCPPorts = [ 22 139 445 ];
+  networking.firewall.allowedTCPPorts = [ 22 139 445 32400 ];
   networking.firewall.allowedUDPPorts = [ 137 138 ];
 
   networking.interfaces.ens18 = {
@@ -31,6 +31,13 @@ in
     plex
     jellyfin
   ];
+
+  # plex
+  services.plex = {
+    enable = true;
+    openFirewall = true;
+    user = "root";
+  };
 
   # mount smb share
   fileSystems."/mnt/ServerStorage" = {
