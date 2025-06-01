@@ -4,3 +4,6 @@ flake.lock
 # password management
 secrets.nix
 smb-secrets
+
+# other junk
+.DS_Store
