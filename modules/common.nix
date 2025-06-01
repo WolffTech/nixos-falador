@@ -24,6 +24,9 @@
     home-manager
   ];
 
+  # increase download buffer size as nixos-rebuild has been failing
+  nix.settings.download-buffer-size = 16777216; # 16 MB
+
   # state version (do not change)
   system.stateVersion = "24.11";
 }
