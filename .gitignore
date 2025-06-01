@@ -1,2 +1,6 @@
-secrets.nix
+# flake lock file
 flake.lock
+
+# password management
+secrets.nix
+smb-secrets
