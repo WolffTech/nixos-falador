@@ -33,8 +33,8 @@ in
   ];
 
   # mount smb share
-  fileSystems."/mnt/share" = {
-    device = "//<IP_OR_HOST>/path/to/share";
+  fileSystems."/mnt/ServerStorage" = {
+    device = "//172.16.1.2/ServerStorage";
     fsType = "cifs";
     options = let
       # this line prevents hanging on network split
