@@ -11,12 +11,12 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/374a122a-6a34-444b-b60c-7e8c4a7f7cb5";
+    device = "/dev/disk/by-uuid/829df810-ccd1-4371-b055-c7c9c0e1d9af";
     fsType = "ext4";
   };
 
   swapDevices = [
-    { device = "/dev/disk/by-uuid/2ab5cd8b-bf41-41ec-90b9-3664f2e529b8"; }
+    { device = "/dev/disk/by-uuid/ac0cd5c3-6402-4b63-b9c4-fbc0f57e692b"; }
   ];
 
   networking.useDHCP = lib.mkDefault true;
