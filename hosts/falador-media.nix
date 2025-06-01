@@ -9,28 +9,18 @@ in
 
   # extra packages
   environment.systemPackages = with pkgs; [
+    cifs-utils
     plex
     jellyfin
   ];
 
   # mount smb share
-  boot.kernelModules = [ "cifs" ];
-
-  fileSystems."/mnt/ServerStorage" = {
-    device  = "//172.16.1.2/ServerStorage";
-    fsType  = "cifs";
-    options = [
-      "credentials=/etc/samba/creds"
-      "uid=1000"
-      "gid=100"
-      "file_mode=0644"
-      "dir_mode=0755"
-    ];
+  fileSystems."/mnt/share" = {
+    device = "//<IP_OR_HOST>/path/to/share";
+    fsType = "cifs";
+    options = let
+      # this line prevents hanging on network split
+      automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+    in ["${automount_opts},credentials=/etc/nixos/smb-secrets"];
   };
-
-  environment.etc."samba/creds".text = lib.concatStringsSep "\n" [
-    "username=${secrets.username}"
-    "password=${secrets.password}"
-  ];
-  environment.etc."samba/creds".mode = "0600";
 }
