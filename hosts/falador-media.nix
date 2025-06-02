@@ -1,8 +1,5 @@
 { config, pkgs, lib, ... }:
 
-let
-  secrets = import ../secrets.nix;
-in
 {
   # hostname
   networking.hostName = "Falador-Media";
@@ -30,10 +27,19 @@ in
     cifs-utils
     plex
     jellyfin
+    jellyfin-web
+    jellyfin-ffmpeg
   ];
 
   # plex
   services.plex = {
+    enable = true;
+    openFirewall = true;
+    user = "root";
+  };
+
+# jellyfin
+  services.jellyfin = {
     enable = true;
     openFirewall = true;
     user = "root";
