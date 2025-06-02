@@ -26,4 +26,15 @@
   environment.systemPackages = with pkgs; [
     cloudflared
   ];
+
+  # cloudflared
+  services.cloudflared = {
+    enable = true;
+    tunnels = {
+      "WolffHQ" = {
+        default = "http_status:404";
+        credentialsFile = "/root/.cloudflared/e6b20763-54c3-4c9d-8de6-d3ebc1b35507.json";
+      };
+    };
+  };
 }
