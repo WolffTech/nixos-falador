@@ -22,4 +22,14 @@
     factorio-headless
     papermc
   ];
+
+  # factorio
+  services.factorio = {
+    enable = true;
+    public = false;
+    stateDirName = "factorio"; # you can find map and config under /var/lib/factorio
+    game-password = "thegame";
+    game-name = "Wolff.Tech Factorio - TheGame";
+    admins = [ "WolffTech" ];
+  };
 }
